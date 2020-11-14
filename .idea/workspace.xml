@@ -99,6 +99,7 @@
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
     </include_path>
   </component>
   <component name="ProjectId" id="1k9RKJ23QftLM3xEqPMo6r0QDKR" />
@@ -109,7 +110,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -121,6 +122,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -139,7 +141,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605110756157</updated>
       <workItem from="1605110757193" duration="2326000" />
-      <workItem from="1605331456709" duration="5737000" />
+      <workItem from="1605331456709" duration="14402000" />
     </task>
     <servers />
   </component>
@@ -159,5 +161,9 @@
       <screen x="45" y="24" width="1321" height="744" />
     </state>
     <state x="493" y="141" key="FileChooserDialogImpl/45.24.1321.744@45.24.1321.744" timestamp="1605199699083" />
+    <state x="39" y="27" width="1166" height="761" key="dock-window-1" timestamp="1605348779669">
+      <screen x="0" y="27" width="1600" height="805" />
+    </state>
+    <state x="39" y="27" width="1166" height="761" key="dock-window-1/0.27.1600.805@0.27.1600.805" timestamp="1605348779669" />
   </component>
 </project>
