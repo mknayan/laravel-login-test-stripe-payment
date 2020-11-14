@@ -5,7 +5,35 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Payment History</div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">Payment History</div>
+                        <div class="col-md-6 text-right">
+                            <form action="" method="get">
+                            <select class="form-control" name="year" id="year">
+                                <option value="2018" @if($year == 2018) selected @else @endif>2018</option>
+                                <option value="2019" @if($year == 2019) selected @else @endif>2019</option>
+                                <option value="2020" @if($year == 2020) selected @else @endif>2020</option>
+                            </select>
+                            <select class="form-control" name="month" id="month">
+                                <option value="1" @if($month == 1) selected @else @endif>January</option>
+                                <option value="2" @if($month == 2) selected @else @endif>February</option>
+                                <option value="3" @if($month == 3) selected @else @endif>March</option>
+                                <option value="4" @if($month == 4) selected @else @endif>April</option>
+                                <option value="5" @if($month == 5) selected @else @endif>May</option>
+                                <option value="6" @if($month == 6) selected @else @endif>June</option>
+                                <option value="7" @if($month == 7) selected @else @endif>July</option>
+                                <option value="8" @if($month == 8) selected @else @endif>August</option>
+                                <option value="9" @if($month == 9) selected @else @endif>September</option>
+                                <option value="10" @if($month == 10) selected @else @endif>October</option>
+                                <option value="11" @if($month == 11) selected @else @endif>November</option>
+                                <option value="12" @if($month == 12) selected @else @endif>December</option>
+                            </select>
+                                <button type="submit" id="filter_submit" class="btn btn-primary">Filter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <table class="table">
@@ -17,13 +45,24 @@
                             <td>Status</td>
                             <td>Payment Datetime</td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Stripe</td>
-                            <td>$10.00</td>
-                            <td>Success</td>
-                            <td>10/12/2014 12:40am</td>
-                        </tr>
+                        <?php $i = 1; ?>
+                        @if(count($payment_history)>0)
+                            @foreach($payment_history as $payment_history_single)
+                                <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{ucfirst($payment_history_single->payment_gateway)}}</td>
+                                    <td>${{$payment_history_single->amount}} USD</td>
+                                    <td>{{ucfirst($payment_history_single->status)}}</td>
+                                    <td>{{date('d M, Y h:i a', strtotime($payment_history_single->payment_datetime))}}</td>
+                                </tr>
+                                <?php $i++; ?>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5" class="text-center">No payment data found</td>
+                            </tr>
+                        @endif
+
                         </tbody>
                     </table>
                 </div>
