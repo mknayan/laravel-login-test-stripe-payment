@@ -6,6 +6,8 @@ To run the projects, we have to do the following
 - Generate a new app key by running
 ### `php artisan key:generate`
 - Configure database connection
+- Run the migration command
+### `php artisan migrate`
 - Configure STRIPE_KEY and STRIPE_SECRET
 - To run the scheduler, add the following Cron
 ### `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
