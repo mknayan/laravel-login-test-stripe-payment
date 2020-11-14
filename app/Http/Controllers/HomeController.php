@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use Stripe;
 use App\User;
+use App\PaymentHistory;
 
 class HomeController extends Controller
 {
@@ -45,8 +46,21 @@ class HomeController extends Controller
             "description" => "Account Activation"
         ]);
 
+        $user_id = Auth::user()->id;
+        //save payment history
+        $payment = new PaymentHistory;
+        $payment->user_id = $user_id;
+        $payment->payment_gateway = 'stripe';
+        $payment->amount = 10.00;
+        $payment->status = ($charge_result && ($charge_result->status == 'succeeded'))?'success':'failed';
+        $payment->payment_datetime = date('Y-m-d H:i:s');
+        $payment->payment_log = json_encode($charge_result);
+        $payment->save();
+
         if($charge_result && ($charge_result->status == 'succeeded')){
-            $user = User::find(Auth::user()->id);
+
+
+            $user = User::find($user_id);
             $user->status = 1;
             if($user->save()){
                 Session::flash('status', 'Account activated successfully');
@@ -61,6 +75,10 @@ class HomeController extends Controller
     }
 
     public function PaymentHistory(Request $request){
-        return view('payment_history');
+        $data = [];
+        $data['year'] = $request->year?$request->year:2020;
+        $data['month'] = $request->month?$request->month:11;
+        $data['payment_history'] = PaymentHistory::whereMonth('payment_datetime', $data['month'])->whereYear('payment_datetime', $data['year'])->get();
+        return view('payment_history',$data);
     }
 }

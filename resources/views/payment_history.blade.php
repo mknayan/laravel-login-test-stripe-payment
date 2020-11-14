@@ -5,7 +5,35 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Payment History</div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">Payment History</div>
+                        <div class="col-md-6 text-right">
+                            <form action="" method="get">
+                            <select class="form-control" name="year" id="year">
+                                <option value="2018" @if($year == 2018) selected @else @endif>2018</option>
+                                <option value="2019" @if($year == 2019) selected @else @endif>2019</option>
+                                <option value="2020" @if($year == 2020) selected @else @endif>2020</option>
+                            </select>
+                            <select class="form-control" name="month" id="month">
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11" selected>November</option>
+                                <option value="12">December</option>
+                            </select>
+                                <button type="submit" id="filter_submit" class="btn btn-primary">Filter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <table class="table">
@@ -17,13 +45,24 @@
                             <td>Status</td>
                             <td>Payment Datetime</td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Stripe</td>
-                            <td>$10.00</td>
-                            <td>Success</td>
-                            <td>10/12/2014 12:40am</td>
-                        </tr>
+                        <?php $i = 1; ?>
+                        @if(count($payment_history)>0)
+                            @foreach($payment_history as $payment_history_single)
+                                <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{ucfirst($payment_history_single->payment_gateway)}}</td>
+                                    <td>${{$payment_history_single->amount}} USD</td>
+                                    <td>{{ucfirst($payment_history_single->status)}}</td>
+                                    <td>{{date('d M, Y h:i a', strtotime($payment_history_single->payment_datetime))}}</td>
+                                </tr>
+                                <?php $i++; ?>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5" class="text-center">No payment data found</td>
+                            </tr>
+                        @endif
+
                         </tbody>
                     </table>
                 </div>

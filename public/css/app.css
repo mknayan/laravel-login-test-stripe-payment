@@ -9,3 +9,15 @@
 .hide{
     display:none;
 }
+#year{
+    display: inline;
+    width:80px;
+}
+#month{
+    display: inline;
+    width:115px;
+}
+#filter_submit{
+    height: 36px;
+    margin-top: -4px;
+}
